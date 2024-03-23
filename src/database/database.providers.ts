@@ -1,10 +1,10 @@
 import { Sequelize } from 'sequelize-typescript';
-import { department } from './entities/department.entity';
-import { team } from './entities/team.entity';
-import { role } from './entities/role.entity';
-import { employee } from './entities/employee.entity';
-import { employee_login } from './entities/employee_login.entity';
-import { employee_stats } from './entities/employee_stats.entity';
+import { department } from './entities/department/department.model';
+import { team } from './entities/team/team.model';
+import { role } from './entities/role/role.model';
+import { employee } from './entities/employee/employee.model';
+import { employee_login } from './entities/employee_login/employee_login.model';
+import { employee_stats } from './entities/employee_stats/employee_stats.model';
 
 export const databaseProviders = [
   {

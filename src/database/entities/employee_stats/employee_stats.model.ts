@@ -1,6 +1,6 @@
 import { Column, Model, Table, ForeignKey, BelongsTo } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import { employee } from './employee.entity';
+import { employee } from '../employee/employee.model';
 
 @Table ({
     timestamps: false, // Disable timestamps
@@ -50,7 +50,10 @@ export class employee_stats extends Model<employee_stats> {
     error_count: string;
 
     @ForeignKey(() => employee)
-    @Column
+    @Column({
+        type: DataTypes.STRING,
+        allowNull: false
+    })
     employee_id: string;
   
     @BelongsTo(() => employee)

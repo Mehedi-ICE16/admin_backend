@@ -1,13 +1,13 @@
 import { Column, Model, Table, ForeignKey, BelongsTo, HasMany } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import { department } from './department.entity';
-import { role } from './role.entity';
+import { team } from '../team/team.model';
+import { employee } from '../employee/employee.model';
 
 @Table ({
     timestamps: false, // Disable timestamps
     freezeTableName: true, // Prevent table name changes
 })
-export class team extends Model<team> {
+export class role extends Model<role> {
     @Column({
         type: DataTypes.STRING,
         primaryKey: true,
@@ -27,13 +27,16 @@ export class team extends Model<team> {
         allowNull: false,
     })
     description: string;
-    @ForeignKey(() => department)
-    @Column
-    dept_id: string;
+    @ForeignKey(() => team)
+    @Column({
+        type: DataTypes.STRING,
+        allowNull: false
+    })
+    team_id: string;
   
-    @BelongsTo(() => department)
-    department: department;
+    @BelongsTo(() => team)
+    team: team;
   
-    @HasMany(() => role)
-    roles: role[];
-}
+    @HasMany(() => employee)
+    employees: employee[];
+}   

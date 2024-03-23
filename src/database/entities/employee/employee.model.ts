@@ -8,9 +8,9 @@ import {
   HasMany,
 } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
-import { role } from './role.entity';
-import { employee_login } from './employee_login.entity';
-import { employee_stats } from './employee_stats.entity';
+import { role } from '../role/role.model';
+import { employee_login } from '../employee_login/employee_login.model';
+import { employee_stats } from '../employee_stats/employee_stats.model';
 
 @Table({
   timestamps: false, // Disable timestamps
@@ -51,9 +51,18 @@ export class employee extends Model<employee> {
   })
   active: boolean;
 
+  @Column({
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+  })
+  admin: boolean;
+
   @ForeignKey(() => role)
-  @Column
-  role_id: string;
+ @Column({
+  type: DataTypes.STRING, 
+  allowNull: false,
+ })
+role_id: string;
 
   @BelongsTo(() => role)
   role: role;
